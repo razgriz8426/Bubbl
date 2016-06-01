@@ -23,7 +23,7 @@ def contact():
         'contact.html',
         title='Contact',
         year=datetime.now().year,
-        message='Your contact page.'
+        message='Bubbl Inc. (maybe...)'
     )
 
 @app.route('/about')
@@ -31,7 +31,7 @@ def about():
     """Renders the about page."""
     return render_template(
         'about.html',
-        title='About',
+        title='About Bubbl',
         year=datetime.now().year,
-        message='Your application description page.'
+        message='See homepage for anything relevant'
     )
