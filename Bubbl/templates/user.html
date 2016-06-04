@@ -2,16 +2,16 @@
 
 {% block content %}
 
-{% if name == "Michael" %}
+{% if name.lower() == "Michael" %}
     <h2>Hello Michael, lovely weather, isn't it?</h2>
 
-{% elif name == "Charlie" %}
+{% elif name.lower() == "Charlie" %}
     <h2>I bow to you, master.</h2>
 
-{% elif name == "Austin" %}
+{% elif name.lower() == "Austin" %}
 <h2>Hiya Austin! How's the AIDS?</h2>
 
-{% elif name == "Nik" %}
+{% elif name.lower() == "nik" %}
 <h2>Boy, Nik sure has nice biceps!</h2>
 
 {% else %}
