@@ -45,3 +45,10 @@ def test():
        year=datetime.now().year,
        message='This is a test template!'
     )
+
+@app.route('/user/<name>')
+def user(name):
+    return render_template(
+        'user.html',
+        name=name
+    )

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Bubbl\templates\test.html" />
+    <Content Include="Bubbl\templates\user.html" />
     <Content Include="requirements.txt" />
     <Content Include="Bubbl\static\content\bootstrap.css" />
     <Content Include="Bubbl\static\content\bootstrap.min.css" />
