@@ -41,6 +41,8 @@
     <Folder Include="Bubbl\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bubbl\templates\404.html" />
+    <Content Include="Bubbl\templates\500.html" />
     <Content Include="Bubbl\templates\test.html" />
     <Content Include="Bubbl\templates\user.html" />
     <Content Include="requirements.txt" />
