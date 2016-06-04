@@ -1,1 +1,23 @@
-﻿<h1>Hello, {{ name }}!</h1>
+﻿{% extends "layout.html" %}
+
+{% block content %}
+
+{% if name == "Michael" %}
+    <h2>Hello Michael, lovely weather, isn't it?</h2>
+
+{% elif name == "Charlie" %}
+    <h2>I bow to you, master.</h2>
+
+{% elif name == "Austin" %}
+<h2>Hiya Austin! How's the AIDS?</h2>
+
+{% elif name == "Nik" %}
+<h2>Boy, Nik sure has nice biceps!</h2>
+
+{% else %}
+   <h2> Hello, Stranger! </h2>
+
+{% endif %}
+
+
+{% endblock %}
