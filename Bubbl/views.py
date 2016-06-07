@@ -3,8 +3,18 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template
+from flask import render_template, request
 from Bubbl import app
+from wtforms import StringField, SubmitField, validators, Form
+
+
+app.config['SECRET_KEY'] = 'Razgriz8426?secretkey'
+
+
+
+class NameForm(Form):
+    name = StringField('What is your name?', [validators.InputRequired()])
+    submit = SubmitField('Submit')
 
 @app.route('/')
 @app.route('/home')
@@ -61,3 +71,15 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template('500.html'), 500
+
+
+@app.route('/form', methods=['GET', 'POST'])
+def form():
+    name = None
+    form = NameForm(request.form)
+    if form.validate():
+        name = form.name.data
+        form.name.data = ''
+    return render_template('form.html', form=form, name=name)
+
+

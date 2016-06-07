@@ -43,8 +43,11 @@
   <ItemGroup>
     <Content Include="Bubbl\templates\404.html" />
     <Content Include="Bubbl\templates\500.html" />
+    <Content Include="Bubbl\templates\form.html" />
+    <Content Include="Bubbl\templates\register.html" />
     <Content Include="Bubbl\templates\test.html" />
     <Content Include="Bubbl\templates\user.html" />
+    <Content Include="Bubbl\templates\_formhelpers.html" />
     <Content Include="requirements.txt" />
     <Content Include="Bubbl\static\content\bootstrap.css" />
     <Content Include="Bubbl\static\content\bootstrap.min.css" />

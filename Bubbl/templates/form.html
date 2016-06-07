@@ -1,0 +1,28 @@
+﻿{% extends "layout.html" %}
+
+
+
+
+{% block content %}
+
+<form method="POST">
+    {{ form.name.label }} {{ form.name() }}
+    {{ form.submit() }}
+</form>
+
+{% if name == "charlie" or name == "Charlie" %}
+    <h2>I bow to you, {{name}}.</h2>
+
+{% elif name == "nik" or name == "Nik" %}
+    <h2>Boy, Nik sure has nice triceps!</h2>
+
+
+{% endif %}
+
+
+
+<h2> Hello, Stranger! </h2>
+
+
+
+{% endblock %}
