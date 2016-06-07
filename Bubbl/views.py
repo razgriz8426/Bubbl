@@ -3,7 +3,7 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, flash
 from Bubbl import app
 from wtforms import StringField, SubmitField, validators, Form
 
@@ -77,10 +77,13 @@ def internal_server_error(e):
 @app.route('/form', methods=['GET', 'POST'])
 def form():
     form = NameForm(request.form)
-
     if form.validate():
+        old_name = session.get('name')
+        if old_name is not None and old_name != form.name.data:
+            flash('Looks like you have changed your name!')
         session['name'] = form.name.data
         session['message'] = ''
+        form.name.data = ''
         return redirect(url_for('form'))
     elif request.method == 'POST':
         session['message'] = 'Please enter a name'
