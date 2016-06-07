@@ -15,6 +15,7 @@ app.config['SECRET_KEY'] = 'Razgriz8426?secretkey'
 class NameForm(Form):
     name = StringField('What is your name?', [validators.InputRequired()])
     submit = SubmitField('Submit')
+    name.data = None
 
 @app.route('/')
 @app.route('/home')
