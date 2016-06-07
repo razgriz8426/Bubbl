@@ -3,7 +3,8 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template, request
+from flask import render_template
+from flask import request
 from Bubbl import app
 from wtforms import StringField, SubmitField, validators, Form
 
@@ -77,9 +78,12 @@ def internal_server_error(e):
 def form():
     name = None
     form = NameForm(request.form)
+    message = ''
     if form.validate():
         name = form.name.data
         form.name.data = ''
-    return render_template('form.html', form=form, name=name)
+    elif request.method == 'POST':
+        message = 'Please enter a name'
+    return render_template('form.html', form=form, name=name, message=message)
 
 
