@@ -30,10 +30,11 @@
                 <a class="navbar-brand" href="/">Bubbl</a>
             </div>
             
-            <div class="navbar-collapse collapse">
-                
-                {% for href, id, caption in navigation_bar %}
+            <div class="navbar-collapse collapse" id="navigation">
+            
+              
                 <ul class="nav navbar-nav">
+                    {% for href, id, caption in navigation_bar %}
                     <li {% if id == active_page %} class="active"{% endif %}><a href={{href|e}}>{{caption|e}}</a></li>
                 {% endfor %}
                 </ul>
@@ -50,13 +51,7 @@
         </div>
     </div>
 
-    <div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
-        <div class="container">
-            <div class="navbar-text pull-left">
-                <p>2016 Bubbl</p>
-            </div>
-        </div>
-    </div>
+   
 {% endblock %}
 
 
@@ -80,6 +75,13 @@
         {% block page_content %}{% endblock %}
     </div>
 
+<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+    <div class="container">
+        <div class="navbar-text pull-left">
+            2016 Bubbl
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}
