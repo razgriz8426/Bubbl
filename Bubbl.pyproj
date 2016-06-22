@@ -7,9 +7,8 @@
     <ProjectGuid>4da7c576-e4fc-4671-a1b1-c548581ea233</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <ProjectTypeGuids>{789894c7-04a9-4a11-a6b5-3f4435165112};{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
-    <StartupFile>runserver.py</StartupFile>
-    <SearchPath>
-    </SearchPath>
+    <StartupFile>C:\Users\Charlie\Google Drive\Website\Bubbl\Bubbl\manage.py</StartupFile>
+    <SearchPath>Bubbl\</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <LaunchProvider>Web launcher</LaunchProvider>
     <OutputPath>.</OutputPath>
@@ -18,6 +17,9 @@
     <PythonWsgiHandler>$(MSBuildProjectName).app</PythonWsgiHandler>
     <Name>Bubbl</Name>
     <RootNamespace>Bubbl</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <CommandLineArguments>runserver</CommandLineArguments>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,53 +30,72 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="runserver.py" />
-    <Compile Include="Bubbl\__init__.py" />
-    <Compile Include="Bubbl\views.py" />
+    <Compile Include="Bubbl\app\email.py" />
+    <Compile Include="Bubbl\app\main\errors.py" />
+    <Compile Include="Bubbl\app\main\forms.py" />
+    <Compile Include="Bubbl\app\main\views.py" />
+    <Compile Include="Bubbl\app\main\__init__.py" />
+    <Compile Include="Bubbl\app\models.py" />
+    <Compile Include="Bubbl\app\__init__.py" />
+    <Compile Include="Bubbl\config.py" />
+    <Compile Include="Bubbl\manage.py" />
+    <Compile Include="Bubbl\tests\test.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Bubbl\app\static\content\bootstrap.css" />
+    <Content Include="Bubbl\app\static\content\bootstrap.min.css" />
+    <Content Include="Bubbl\app\static\content\site.css" />
+    <Content Include="Bubbl\app\static\favicon.ico" />
+    <Content Include="Bubbl\app\static\favicon.png" />
+    <Content Include="Bubbl\app\static\favicon.xcf" />
+    <Content Include="Bubbl\app\static\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Bubbl\app\static\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Bubbl\app\static\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Bubbl\app\static\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Bubbl\app\static\scripts\_references.js" />
+    <Content Include="Bubbl\app\static\scripts\bootstrap.js" />
+    <Content Include="Bubbl\app\static\scripts\bootstrap.min.js" />
+    <None Include="Bubbl\app\static\scripts\jquery.validate-vsdoc.js" />
+    <None Include="Bubbl\app\static\scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Bubbl\app\static\scripts\jquery-1.10.2.js" />
+    <Content Include="Bubbl\app\static\scripts\jquery-1.10.2.min.js" />
+    <Content Include="Bubbl\app\static\scripts\jquery-1.10.2.min.map" />
+    <Content Include="Bubbl\app\static\scripts\jquery.validate.js" />
+    <Content Include="Bubbl\app\static\scripts\jquery.validate.min.js" />
+    <Content Include="Bubbl\app\static\scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Bubbl\app\static\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Bubbl\app\static\scripts\modernizr-2.6.2.js" />
+    <Content Include="Bubbl\app\static\scripts\respond.js" />
+    <Content Include="Bubbl\app\static\scripts\respond.min.js" />
+    <Content Include="Bubbl\app\templates\404.html" />
+    <Content Include="Bubbl\app\templates\500.html" />
+    <Content Include="Bubbl\app\templates\about.html" />
+    <Content Include="Bubbl\app\templates\boot.html" />
+    <Content Include="Bubbl\app\templates\contact.html" />
+    <Content Include="Bubbl\app\templates\form.html" />
+    <Content Include="Bubbl\app\templates\template.html" />
+    <Content Include="Bubbl\app\templates\index.html" />
+    <Content Include="Bubbl\app\templates\register.html" />
+    <Content Include="Bubbl\app\templates\test.html" />
+    <Content Include="Bubbl\app\templates\user.html" />
+    <Content Include="Bubbl\app\templates\_formhelpers.html" />
+    <Content Include="Bubbl\requirements.txt" />
+    <Content Include="Bubbl\__pycache__\views.cpython-35.pyc" />
+    <Content Include="Bubbl\__pycache__\__init__.cpython-35.pyc" />
+    <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bubbl\" />
-    <Folder Include="Bubbl\static\" />
-    <Folder Include="Bubbl\static\content\" />
-    <Folder Include="Bubbl\static\fonts\" />
-    <Folder Include="Bubbl\static\scripts\" />
-    <Folder Include="Bubbl\templates\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Bubbl\templates\404.html" />
-    <Content Include="Bubbl\templates\500.html" />
-    <Content Include="Bubbl\templates\form.html" />
-    <Content Include="Bubbl\templates\register.html" />
-    <Content Include="Bubbl\templates\test.html" />
-    <Content Include="Bubbl\templates\user.html" />
-    <Content Include="Bubbl\templates\_formhelpers.html" />
-    <Content Include="requirements.txt" />
-    <Content Include="Bubbl\static\content\bootstrap.css" />
-    <Content Include="Bubbl\static\content\bootstrap.min.css" />
-    <Content Include="Bubbl\static\content\site.css" />
-    <Content Include="Bubbl\static\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Bubbl\static\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Bubbl\static\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Bubbl\static\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Bubbl\static\scripts\bootstrap.js" />
-    <Content Include="Bubbl\static\scripts\bootstrap.min.js" />
-    <Content Include="Bubbl\static\scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Bubbl\static\scripts\jquery-1.10.2.js" />
-    <Content Include="Bubbl\static\scripts\jquery-1.10.2.min.js" />
-    <Content Include="Bubbl\static\scripts\jquery-1.10.2.min.map" />
-    <Content Include="Bubbl\static\scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Bubbl\static\scripts\jquery.validate.js" />
-    <Content Include="Bubbl\static\scripts\jquery.validate.min.js" />
-    <Content Include="Bubbl\static\scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Bubbl\static\scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Bubbl\static\scripts\modernizr-2.6.2.js" />
-    <Content Include="Bubbl\static\scripts\respond.js" />
-    <Content Include="Bubbl\static\scripts\respond.min.js" />
-    <Content Include="Bubbl\static\scripts\_references.js" />
-    <Content Include="Bubbl\templates\about.html" />
-    <Content Include="Bubbl\templates\contact.html" />
-    <Content Include="Bubbl\templates\index.html" />
-    <Content Include="Bubbl\templates\layout.html" />
+    <Folder Include="Bubbl\app\" />
+    <Folder Include="Bubbl\app\main\" />
+    <Folder Include="Bubbl\app\static\" />
+    <Folder Include="Bubbl\app\static\content\" />
+    <Folder Include="Bubbl\app\static\fonts\" />
+    <Folder Include="Bubbl\app\static\scripts\" />
+    <Folder Include="Bubbl\app\templates\" />
+    <Folder Include="Bubbl\migrations\" />
+    <Folder Include="Bubbl\tests\" />
+    <Folder Include="Bubbl\__pycache__\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 

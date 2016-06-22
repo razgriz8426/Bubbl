@@ -1,0 +1,36 @@
+﻿{% extends "template.html" %}
+{% set active_page = "index" %}
+
+{% block page_content %}
+<div class="container">
+    <div class="jumbotron">
+        <h1><center>Bubbl</center></h1>
+        <h3 class="lead"><center>Blog smarter</center></h3>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>How it works</h2>
+            <p>
+                You write a blog, then you get a bubbl around you. The more people like it, the larger your bubbl grows!
+            </p>
+            <p><a class="btn btn-default" href="">This button does nothing &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>I need this in my life</h2>
+            <p>Don't you worry, we're getting there.</p>
+            <p><a class="btn btn-default" href="index.html">Reload page &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Do you have anything for this section?</h2>
+            <p>Nope, not yet. This is a big improvement already, so get off my back.</p>
+            <p><a class="btn btn-default" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Don't click this button! &raquo;</a></p>
+        </div>
+    </div>
+</div>
+
+{{ super() }}
+
+{% endblock %}

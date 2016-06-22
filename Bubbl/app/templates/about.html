@@ -1,0 +1,12 @@
+{% extends "template.html" %}
+{% set active_page = "about" %}
+
+
+{% block page_content %}
+
+<h2>{{ title }}</h2>
+<h3>{{ message }}</h3>
+
+{{ super() }}
+
+{% endblock %}

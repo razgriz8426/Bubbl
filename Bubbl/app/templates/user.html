@@ -1,0 +1,23 @@
+﻿{% extends "bootstrap/base.html" %}
+
+{% block content %}
+
+{% if name.lower() == "michael" %}
+    <h2>Hello Michael, lovely weather, isn't it?</h2>
+
+{% elif name.lower() == "charlie" %}
+    <h2>I bow to you, master.</h2>
+
+{% elif name.lower() == "austin" %}
+<h2>Hiya Austin! How's the AIDS?</h2>
+
+{% elif name.lower() == "nik" %}
+<h2>Boy, Nik sure has nice biceps!</h2>
+
+{% else %}
+   <h2> Hello, Stranger! </h2>
+
+{% endif %}
+
+
+{% endblock %}

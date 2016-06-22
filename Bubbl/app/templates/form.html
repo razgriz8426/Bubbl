@@ -1,0 +1,43 @@
+﻿{% extends "template.html" %}
+
+{% set active_page = "form" %}
+
+
+
+
+{% block page_content %}
+
+<div class="form-inline">
+{% import "bootstrap/wtf.html" as wtf %}
+{{ wtf.quick_form(form) }}
+</div>
+
+{% if name == "charlie" or name == "Charlie" %}
+    <h2>I bow to you, {{name}}.</h2>
+
+{% elif name == "nik" or name == "Nik" %}
+    <h2>Boy, Nik sure has nice triceps!</h2>
+
+{% elif name == "Victoria" or name == "victoria" %}
+    <h2>Hey cutie :)</h2>
+
+{% elif name == "Nathan" or name == "nathan" %}
+    <h2>Nathan Dryer is the coolest dude there is.</h2>
+
+{% elif name == "Aimee" or name == "aimee" or name == "Mom" or name == "mom" %}
+    <h2>Aimee is the best mother anyone could ask for!</h2>
+
+{% elif name == "v" or name == "V" or name == "Vee" or name == "vee" %}
+    <h2>I love you ;)</h2>
+
+{% elif name == None %}
+    
+{% else %}
+    <h2>Hello, Stranger!</h2>
+
+{% endif %}
+
+{{ message }}
+
+
+{% endblock %}
