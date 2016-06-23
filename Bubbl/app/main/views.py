@@ -97,6 +97,13 @@ def user(name):
     )
 
 
+
+@main.route('/testdb')
+def testdb():
+    if db.session.query("1").from_statement("SELECT 1").all():
+        return 'It works.'
+    else:
+        return 'Fuck.'
 @main.route('/form', methods=['GET', 'POST'])
 def form():
     form = NameForm()

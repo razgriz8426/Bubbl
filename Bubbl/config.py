@@ -11,6 +11,7 @@ class Config:
     @staticmethod
     def init_app(app):
         pass
+   
     
 class DevelopmentConfig(Config):
     DEBUG = True
@@ -27,12 +28,12 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URL = 'mysql://apps:Razgriz8426?mysql@localhost/apps'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://razgriz8426:Razgriz8426?mysql@localhost/dv1'
     WTF_CSRF_ENABLED = False
     SECRET_KEY = 'Razgriz8426?secretkey'
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URL = 'mysql://apps:Razgriz8426?mysql@localhost/apps'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://razgriz8426:Razgriz8426?mysql@localhost/db1'
     WTF_CSRF_ENABLED = False
     SECRET_KEY = 'Razgriz8426?secretkey'
 
