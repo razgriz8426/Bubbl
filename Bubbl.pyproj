@@ -73,6 +73,8 @@
     <Content Include="Bubbl\app\templates\boot.html" />
     <Content Include="Bubbl\app\templates\contact.html" />
     <Content Include="Bubbl\app\templates\form.html" />
+    <Content Include="Bubbl\app\templates\profile.html" />
+    <Content Include="Bubbl\app\templates\signup.html" />
     <Content Include="Bubbl\app\templates\template.html" />
     <Content Include="Bubbl\app\templates\index.html" />
     <Content Include="Bubbl\app\templates\register.html" />

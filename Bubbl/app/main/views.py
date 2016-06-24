@@ -4,12 +4,12 @@ Routes and views for the flask application.
 
 import os
 from datetime import datetime
-from flask import Flask,render_template, request, session, redirect, url_for, flash
+from flask import Flask, render_template, request, session, redirect, url_for, flash
 from . import main
 from .. import db
 from ..models import User
 from wtforms import StringField, SubmitField, validators, Form
-from .forms import NameForm
+from .forms import NameForm, SignupForm
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
@@ -104,6 +104,7 @@ def testdb():
         return 'It works.'
     else:
         return 'Fuck.'
+
 @main.route('/form', methods=['GET', 'POST'])
 def form():
     form = NameForm()
@@ -122,3 +123,34 @@ def form():
     return render_template('form.html', form=form, name=session.get('name'), message=session.get('message'))
 
 
+@main.route('/signup', methods=['GET', 'POST'])
+def signup():
+    form = SignupForm()
+
+    if request.method == 'POST':
+        if form.validate() == False:
+            return render_template('signup.html', form=form)
+        else: 
+            newuser = User(form.firstname.data, form.lastname.data, form.email.data, form.password.data)
+            db.session.add(newuser)
+            db.session.commit()
+
+            session['email'] = newuser.email
+            return redirect(url_for('main.profile'))
+
+    elif request.method =='GET':
+        return render_template('signup.html', form=form)
+
+
+@main.route('/profile')
+def profile(): 
+
+    if 'email' not in session:
+        return redirect(url_for('main.signin'))
+
+    user = User.query.filter_by(email = session['email']).first()
+
+    if user is None:
+        return redirect(url_for('main.signin'))
+    else:
+        return render_template('profile.html')
