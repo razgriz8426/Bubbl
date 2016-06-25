@@ -25,7 +25,7 @@ app.secret_key = 'Razgriz8426?secretkey'
 
 #database information
 
-SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://apps:Razgriz8426?mysql@localhost/db1'
+SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'
 SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 db = SQLAlchemy(app)
