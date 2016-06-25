@@ -28,7 +28,7 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/d1'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'
     WTF_CSRF_ENABLED = False
     SECRET_KEY = 'Razgriz8426?secretkey'
 
