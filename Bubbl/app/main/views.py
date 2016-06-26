@@ -133,6 +133,7 @@ def signup():
         else: 
             newuser = User(form.firstname.data, form.lastname.data, form.email.data, form.password.data)
             db.session.add(newuser)
+            db.session.commit()
 
             session['email'] = newuser.email
             return redirect(url_for('main.profile'))
