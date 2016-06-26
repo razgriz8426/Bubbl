@@ -80,6 +80,7 @@
     <Content Include="Bubbl\app\templates\register.html" />
     <Content Include="Bubbl\app\templates\test.html" />
     <Content Include="Bubbl\app\templates\user.html" />
+    <Content Include="Bubbl\app\templates\signin.html" />
     <Content Include="Bubbl\app\templates\_formhelpers.html" />
     <Content Include="Bubbl\requirements.txt" />
     <Content Include="Bubbl\__pycache__\views.cpython-35.pyc" />

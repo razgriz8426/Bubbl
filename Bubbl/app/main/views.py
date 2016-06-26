@@ -9,7 +9,7 @@ from . import main
 from .. import db
 from ..models import User
 from wtforms import StringField, SubmitField, validators, Form
-from .forms import NameForm, SignupForm
+from .forms import NameForm, SignupForm, SigninForm
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
@@ -133,7 +133,6 @@ def signup():
         else: 
             newuser = User(form.firstname.data, form.lastname.data, form.email.data, form.password.data)
             db.session.add(newuser)
-            db.session.commit()
 
             session['email'] = newuser.email
             return redirect(url_for('main.profile'))
@@ -154,3 +153,18 @@ def profile():
         return redirect(url_for('main.signin'))
     else:
         return render_template('profile.html')
+
+
+@main.route('/signin', methods=['GET', 'POST'])
+def signin():
+  form = SigninForm()
+   
+  if request.method == 'POST':
+    if form.validate() == False:
+      return render_template('signin.html', form=form)
+    else:
+      session['email'] = form.email.data
+      return redirect(url_for('main.profile'))
+                 
+  elif request.method == 'GET':
+    return render_template('signin.html', form=form)
