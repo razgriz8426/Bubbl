@@ -1,7 +1,14 @@
-from . import db
+from flask_sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
 
+db = SQLAlchemy()
 
+class Role(db.Model):
+    __tablename__ = 'roles'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), unique=True)
+    def __repr__(self):
+        return '<Role %r>' % self.name
 
 
 
@@ -24,3 +31,6 @@ class User(db.Model):
    
     def check_password(self, password):
         return check_password_hash(self.pwdhash, password)
+
+
+

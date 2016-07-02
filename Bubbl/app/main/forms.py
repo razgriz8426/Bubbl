@@ -1,7 +1,7 @@
 from flask_wtf import Form
 from wtforms import StringField, SubmitField, validators, TextField, TextAreaField, SubmitField, ValidationError, PasswordField
-from .. import db
-from ..models import User
+
+from ..models import User, db
 
 class NameForm(Form):
     name = StringField('What is your name?', [validators.DataRequired()])
@@ -48,3 +48,5 @@ class SigninForm(Form):
     else:
       self.email.errors.append("Invalid e-mail or password")
       return False
+
+

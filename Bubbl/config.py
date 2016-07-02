@@ -32,6 +32,7 @@ class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'
     WTF_CSRF_ENABLED = False
     SECRET_KEY = 'Razgriz8426?secretkey'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'

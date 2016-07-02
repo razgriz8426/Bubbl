@@ -6,8 +6,7 @@ import os
 from datetime import datetime
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from . import main
-from .. import db
-from ..models import User
+from ..models import User, db
 from wtforms import StringField, SubmitField, validators, Form
 from .forms import NameForm, SignupForm, SigninForm
 
@@ -78,22 +77,24 @@ def boot():
         title='Bootstrap?'
         )
 
-@main.route('/test')
+@main.route('/test', methods=['GET', 'POST'])
 def test():
-    """Renders the test page."""
-    return render_template(
-        'test.html',
-        title='Tests Here',
-       year=datetime.now().year,
-       message='This is a test template!'
-    )
+    form = NameForm()
+    if form.validate_on_submit():
+        user = Test(name = form.name.data)
+        db.session.add(user)
+        session['name'] = form.name.data
+        form.name.data = ''
+        return redirect(url_for('main.test'))
+    return render_template('test.html',
+        form = form, name = session.get('name'),
+        known = session.get('known', False))
 
 @main.route('/user/<name>')
 def user(name):
     return render_template(
         'user.html',
         name=name
-        
     )
 
 

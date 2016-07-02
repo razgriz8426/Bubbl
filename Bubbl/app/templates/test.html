@@ -1,14 +1,11 @@
 ﻿{% extends "template.html" %}
 
-{% block content %}
-<div class="container">
-    <div class="jumbotron">
-        <h1><center>We be doing tests and messin with
-        shit.</center></h1>
-    </div>
+{% block page_content %}
+
+<div class="form-inline">
+    {% import "bootstrap/wtf.html" as wtf %}
+    {{ wtf.quick_form(form) }}
 </div>
-
-
 
 {{ super() }}
 
