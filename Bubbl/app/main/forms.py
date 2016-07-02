@@ -1,7 +1,6 @@
 from flask_wtf import Form
 from wtforms import StringField, SubmitField, validators, TextField, TextAreaField, SubmitField, ValidationError, PasswordField
 
-from ..models import User, db
 
 class NameForm(Form):
     name = StringField('What is your name?', [validators.DataRequired()])
@@ -22,12 +21,7 @@ class SignupForm(Form):
         if not Form.validate(self):
             return False
 
-        user = User.query.filter_by(email = self.email.data.lower()).first()
-        if user:
-            self.email.errors.append("That email already exists.")
-            return False
-        else:
-            return True
+       
 
 
 class SigninForm(Form):
@@ -42,11 +36,6 @@ class SigninForm(Form):
     if not Form.validate(self):
       return False
      
-    user = User.query.filter_by(email = self.email.data.lower()).first()
-    if user and user.check_password(self.password.data):
-      return True
-    else:
-      self.email.errors.append("Invalid e-mail or password")
-      return False
+ 
 
 

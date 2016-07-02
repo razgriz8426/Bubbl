@@ -6,13 +6,14 @@ import os
 from datetime import datetime
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from . import main
-from ..models import User, db
+
 from wtforms import StringField, SubmitField, validators, Form
 from .forms import NameForm, SignupForm, SigninForm
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
-
+from config import connection
+import pymysql.cursors
 
 app = Flask(__name__)
 
@@ -132,12 +133,20 @@ def signup():
         if form.validate() == False:
             return render_template('signup.html', form=form)
         else: 
-            newuser = User(form.firstname.data, form.lastname.data, form.email.data, form.password.data)
-            db.session.add(newuser)
-            db.session.commit()
-
-            session['email'] = newuser.email
-            return redirect(url_for('main.profile'))
+       #     newuser = User(form.firstname.data, form.lastname.data, form.email.data, form.password.data)
+        
+            firstname=request.form['firstname']
+            lastname=request.form['lastname']
+            email=request.form['email']
+            password=request.form['password']
+            try:
+                with connection.cursor() as cursor:
+                    sql = "INSERT INTO users (firstname,lastname,email,password) VALUES (%s, %s, %s, %s)"
+                    curson.execute(sql, (firstname, lastname, email, password))
+                    connection.commit()
+            finally:
+                connection.close()
+                return redirect(url_for('main.profile'))
 
     elif request.method =='GET':
         return render_template('signup.html', form=form)
@@ -170,3 +179,15 @@ def signin():
                  
   elif request.method == 'GET':
     return render_template('signin.html', form=form)
+
+@main.route("/Authenticate")
+def Authenticate():
+    username = request.args.get('UserName')
+    password = request.args.get('Password')
+    cursor = mysql.connect().cursor()
+    cursor.execute("SELECT * from User where Username='" + username + "' and Password='" + password + "'")
+    data = cursor.fetchone()
+    if data is None:
+        return "Username or Password is wrong"
+    else:
+        return "Logged in successfully"

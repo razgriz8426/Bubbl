@@ -1,13 +1,14 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
+import pymysql.cursors
 
 class Config:
     SECRET_KEY = os.environ.get('Razgriz8426?secretkey') or 'Razgriz8426?secretkey'
-    SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+#    SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 #    FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
 #    FLASKY_MAIL_SENDER = 'Flasky Admin <flasky@example.com>'
 #    FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
-    SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+#   SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 
     @staticmethod
     def init_app(app):
@@ -29,10 +30,20 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'
+#    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'
     WTF_CSRF_ENABLED = False
     SECRET_KEY = 'Razgriz8426?secretkey'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+#    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+
+connection = pymysql.connect(host='localhost',
+                             user='root',
+                             password='Razgriz8426?mysql',
+                             db='db1',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor
+                             )
+
 
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'
