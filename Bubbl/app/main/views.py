@@ -22,12 +22,6 @@ bootstrap = Bootstrap(app)
 app.config['SECRET_KEY'] = 'Razgriz8426?secretkey'
 app.secret_key = 'Razgriz8426?secretkey'
 
-#database information
-
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'
-SQLALCHEMY_COMMIT_ON_TEARDOWN = True
-SQLALCHEMY_TRACK_MODIFICATIONS = False
-db = SQLAlchemy(app)
 
 
 @main.route('/')
