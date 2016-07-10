@@ -1,11 +1,11 @@
 import os
-from app import create_app
+from app import app
 
 from flask_script import Manager, Shell
 from flask_migrate import Migrate, MigrateCommand
-os.environ['DATABASE_URL'] = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'
+# os.environ['DATABASE_URL'] = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'
 
-app = create_app('default')
+
 manager = Manager(app)
 migrate = Migrate(app)
 

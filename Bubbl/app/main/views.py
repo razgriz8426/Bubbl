@@ -2,33 +2,18 @@
 Routes and views for the flask application.
 """
 
-import os
-from datetime import datetime
-from flask import Flask, render_template, request, session, redirect, url_for, flash
-from . import main
 
+from datetime import datetime
+from flask import render_template, request, session, redirect, url_for, flash
+from app import app
 from wtforms import StringField, SubmitField, validators, Form
 from .forms import NameForm, SignupForm, SigninForm
+from . import main
 
-from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
-from config import connection
-import pymysql.cursors
-
-app = Flask(__name__)
-
-bootstrap = Bootstrap(app)
 
 
-app.config['SECRET_KEY'] = 'Razgriz8426?secretkey'
-app.secret_key = 'Razgriz8426?secretkey'
 
-#database information
-
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'
-SQLALCHEMY_COMMIT_ON_TEARDOWN = True
-SQLALCHEMY_TRACK_MODIFICATIONS = False
-db = SQLAlchemy(app)
 
 
 @main.route('/')

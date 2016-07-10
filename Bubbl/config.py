@@ -1,60 +1,15 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
-import pymysql.cursors
 
-class Config:
-    SECRET_KEY = os.environ.get('Razgriz8426?secretkey') or 'Razgriz8426?secretkey'
-#    SQLALCHEMY_COMMIT_ON_TEARDOWN = True
-#    FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
-#    FLASKY_MAIL_SENDER = 'Flasky Admin <flasky@example.com>'
-#    FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
-#   SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+CSRF_ENABLED = True
+SECRET_KEY = 'Razgriz8426?secretkey'
 
-    @staticmethod
-    def init_app(app):
-        pass
-   
-    
-class DevelopmentConfig(Config):
-    DEBUG = True
-    WTF_CSRF_ENABLED = False
-    SECRET_KEY = 'Razgriz8426?secretkey'
-#    MAIL_SERVER = 'smtp.googlemail.com'
-#    MAIL_PORT = 587
-#    MAIL_USE_TLS = True
-#    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-#    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-#    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-#        'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+OPENID_PROVIDERS = [
+    {'name': 'Google', 'url': 'https://www.google.com/accounts/o8/id'},
+    {'name': 'Yahoo', 'url': 'https://me.yahoo.com'},
+    {'name': 'AOL', 'url': 'http://openid.aol.com/<username>'},
+    {'name': 'Flickr', 'url': 'http://www.flickr.com/<username>'},
+    {'name': 'MyOpenID', 'url': 'https://www.myopenid.com'}]
 
-
-class TestingConfig(Config):
-    TESTING = True
-#    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'
-    WTF_CSRF_ENABLED = False
-    SECRET_KEY = 'Razgriz8426?secretkey'
-#    SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-
-connection = pymysql.connect(host='localhost',
-                             user='root',
-                             password='Razgriz8426?mysql',
-                             db='db1',
-                             charset='utf8mb4',
-                             cursorclass=pymysql.cursors.DictCursor
-                             )
-
-
-class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'
-    WTF_CSRF_ENABLED = False
-    SECRET_KEY = 'Razgriz8426?secretkey'
-
-config = {
-    'development': DevelopmentConfig,
-    'testing': TestingConfig,
-    'production': ProductionConfig,
-
-    'default': TestingConfig
-}
-
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
