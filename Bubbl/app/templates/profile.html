@@ -1,7 +1,23 @@
 ﻿{% extends "template.html" %}
+{% set active_page = "profile" %}
+
 {% block page_content %}
 <div class="jumbo">
-    <h2>Profile</h2>
-    <h3>This is {{ session['email'] }}'s profile page</h3>
+    <h3>This is {{ firstname }}'s profile page</h3>
+    
+    {% if firstname == "Nik"%}
+        <h3>
+            Hey Nik! I hope you're having a great day!
+        </h3>
+    {% elif firstname == "Charlie" or firstname == "Charles" %}
+        <h3>
+            You are my master, Charles.
+        </h3>
+    {% elif firstname == "Victoria" or firstname == "victoria" %}
+        <h3>
+            VIIIIIICTOOOOOOORIAAAAAAAAAAAAAAAAAA!!!!
+        </h3>
+    {% endif %}
+
 </div>
 {% endblock %}

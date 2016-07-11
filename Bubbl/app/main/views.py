@@ -144,11 +144,12 @@ def profile():
         return redirect(url_for('main.signin'))
 
     user = User.query.filter_by(email = session['email']).first()
+    
 
     if user is None:
         return redirect(url_for('main.signin'))
     else:
-        return render_template('profile.html')
+        return render_template('profile.html', firstname = user.firstname)
 
 
 @main.route('/signin', methods=['GET', 'POST'])
