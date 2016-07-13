@@ -12,15 +12,26 @@
 
 {% block navbar %}
     <div class="navbar navbar-inverse navbar-static-top" role="navigation" style="background-color: aqua">
+        {% if 'email' in session %}
+        {% set navigation_bar = [
+        ('/', 'index', 'Home'),
+        ('/contact', 'contact', 'Contact'),
+        ('/about', 'about', 'About'),
+        ('/form', 'form', 'Form'),
+        ('/profile', 'profile', 'Profile'),
+        ('/signout', 'signout', 'Signout')
+        ] -%}
+        {% else %}
         {% set navigation_bar = [
         ('/', 'index', 'Home'),
         ('/contact', 'contact', 'Contact'),
         ('/about', 'about', 'About'),
         ('/form', 'form', 'Form'),
         ('/signup', 'signup', 'Signup'),
-        ('/signin', 'signin', 'Signin'),
-        ('/profile', 'profile', 'Profile')
+        ('/signin', 'signin', 'Signin')
         ] -%}
+        {% endif %}
+
         {% set active_page = active_page -%}
         <div class="container">
             <div class="navbar-header">

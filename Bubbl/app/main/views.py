@@ -122,6 +122,9 @@ def form():
 def signup():
     form = SignupForm()
 
+    if 'email' in session:
+        return redirect(url_for('main.profile'))
+
     if request.method == 'POST':
         if form.validate() == False:
             return render_template('signup.html', form=form)
@@ -155,6 +158,9 @@ def profile():
 @main.route('/signin', methods=['GET', 'POST'])
 def signin():
   form = SigninForm()
+
+  if 'email' in session:
+        return redirect(url_for('main.profile'))
    
   if request.method == 'POST':
     if form.validate() == False:
@@ -165,3 +171,13 @@ def signin():
                  
   elif request.method == 'GET':
     return render_template('signin.html', form=form)
+
+
+@main.route('/signout')
+def signout():
+
+    if 'email' not in session:
+        return redirect(url_for('signin'))
+
+    session.pop('email', None)
+    return redirect(url_for('main.home'))
