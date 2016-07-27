@@ -1,6 +1,5 @@
 from flask_wtf import Form
-from wtforms import StringField, SubmitField, validators, TextField, TextAreaField, SubmitField, ValidationError, PasswordField
-
+from wtforms import BooleanField, StringField, SubmitField, validators, TextField, TextAreaField, SubmitField, ValidationError, PasswordField
 from ..models import User, db
 
 class NameForm(Form):
@@ -11,7 +10,7 @@ class NameForm(Form):
 class SignupForm(Form):
     firstname = TextField("First name", [validators.Required("Please enter your first name.")])
     lastname = TextField("Last name",  [validators.Required("Please enter your last name.")])
-    email = TextField("Email",  [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
+    email = TextField("Email",  [validators.Required("Please enter your email address."), validators.Email("Please enter a valid email address.")])
     password = PasswordField('Password', [validators.Required("Please enter a password.")])
     submit = SubmitField("Create account")
 
@@ -31,8 +30,9 @@ class SignupForm(Form):
 
 
 class SigninForm(Form):
-  email = TextField("Email",  [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
+  email = TextField("Email",  [validators.Required("Please enter your email address."), validators.Email("Please enter a valid email address.")])
   password = PasswordField('Password', [validators.Required("Please enter a password.")])
+  remember_me = BooleanField('Keep me logged in')
   submit = SubmitField("Sign In")
    
   def __init__(self, *args, **kwargs):

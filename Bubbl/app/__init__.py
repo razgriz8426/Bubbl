@@ -4,7 +4,8 @@ from flask_mail import Mail
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from config import config
-from .models import db
+from .models import db, login_manager
+
 
 
 
@@ -25,6 +26,7 @@ def create_app(config_name):
     moment.init_app(app)
     db.init_app(app)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'
+    login_manager.init_app(app)
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)

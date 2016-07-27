@@ -30,6 +30,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Bubbl\app\decorators.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Bubbl\app\email.py" />
     <Compile Include="Bubbl\app\main\errors.py" />
     <Compile Include="Bubbl\app\main\forms.py" />
@@ -74,6 +77,7 @@
     <Content Include="Bubbl\app\templates\contact.html" />
     <Content Include="Bubbl\app\templates\form.html" />
     <Content Include="Bubbl\app\templates\profile.html" />
+    <Content Include="Bubbl\app\templates\secret.html" />
     <Content Include="Bubbl\app\templates\signup.html" />
     <Content Include="Bubbl\app\templates\template.html" />
     <Content Include="Bubbl\app\templates\index.html" />

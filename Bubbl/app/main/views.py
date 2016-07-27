@@ -6,18 +6,18 @@ import os
 from datetime import datetime
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from . import main
-from ..models import User, db
+from ..models import User, db, Permission
 from wtforms import StringField, SubmitField, validators, Form
 from .forms import NameForm, SignupForm, SigninForm
 
+from flask_login import login_user, UserMixin, login_required, logout_user
+from ..decorators import admin_required, permission_required
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 
 
 app = Flask(__name__)
-
 bootstrap = Bootstrap(app)
-
 
 app.config['SECRET_KEY'] = 'Razgriz8426?secretkey'
 app.secret_key = 'Razgriz8426?secretkey'
@@ -25,8 +25,8 @@ app.secret_key = 'Razgriz8426?secretkey'
 
 
 @main.route('/')
-@main.route('/index.html')
-@main.route('/home.html')
+@main.route('/index')
+@main.route('/home')
 def home():
     """Renders the home page."""
     return render_template(
@@ -166,8 +166,10 @@ def signin():
     if form.validate() == False:
       return render_template('signin.html', form=form)
     else:
-      session['email'] = form.email.data
-      return redirect(url_for('main.profile'))
+        user = User.query.filter_by(email=form.email.data).first()
+        login_user(user)
+        session['email'] = form.email.data
+        return redirect(url_for('main.profile'))
                  
   elif request.method == 'GET':
     return render_template('signin.html', form=form)
@@ -180,4 +182,10 @@ def signout():
         return redirect(url_for('signin'))
 
     session.pop('email', None)
+    logout_user()
     return redirect(url_for('main.home'))
+
+@main.route('/secret')
+@permission_required(Permission.SEE_LOVE)
+def secret():
+    return render_template('secret.html')
