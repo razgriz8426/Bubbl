@@ -76,6 +76,7 @@
     <Content Include="Bubbl\app\templates\boot.html" />
     <Content Include="Bubbl\app\templates\contact.html" />
     <Content Include="Bubbl\app\templates\form.html" />
+    <Content Include="Bubbl\app\templates\new_post.html" />
     <Content Include="Bubbl\app\templates\profile.html" />
     <Content Include="Bubbl\app\templates\secret.html" />
     <Content Include="Bubbl\app\templates\signup.html" />

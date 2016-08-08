@@ -189,3 +189,8 @@ def signout():
 @permission_required(Permission.SEE_LOVE)
 def secret():
     return render_template('secret.html')
+
+@main.route('/new_post')
+@permission_required(Permission.WRITE_ARTICLES)
+def new_post():
+    return render_template('new_post.html')
