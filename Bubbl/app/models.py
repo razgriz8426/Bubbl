@@ -14,6 +14,14 @@ login_manager.login_view = 'auth.login'
 def load_user(user_id):
     return User.query.filter(User.id == int(user_id)).first()
 
+class Post(db.Model):
+    __tablename__ = 'posts'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.Text)
+    body = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, index=True)
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
 
 class Role(db.Model):
     __tablename__ = 'roles'
@@ -57,6 +65,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), unique=True)
     pwdhash = db.Column(db.String(54))
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
    
     def __init__(self, firstname, lastname, email, password):
         self.firstname = firstname.title()

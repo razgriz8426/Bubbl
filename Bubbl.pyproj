@@ -76,12 +76,14 @@
     <Content Include="Bubbl\app\templates\boot.html" />
     <Content Include="Bubbl\app\templates\contact.html" />
     <Content Include="Bubbl\app\templates\form.html" />
+    <Content Include="Bubbl\app\templates\landing.html" />
     <Content Include="Bubbl\app\templates\new_post.html" />
+    <Content Include="Bubbl\app\templates\post_submission.html" />
     <Content Include="Bubbl\app\templates\profile.html" />
     <Content Include="Bubbl\app\templates\secret.html" />
     <Content Include="Bubbl\app\templates\signup.html" />
     <Content Include="Bubbl\app\templates\template.html" />
-    <Content Include="Bubbl\app\templates\index.html" />
+    <Content Include="Bubbl\app\templates\oldhome.html" />
     <Content Include="Bubbl\app\templates\register.html" />
     <Content Include="Bubbl\app\templates\test.html" />
     <Content Include="Bubbl\app\templates\user.html" />

@@ -3,5 +3,23 @@
 
 {% block page_content %}
 
+<form action="{{ url_for('main.new_post') }}" method=post>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.title.label }}
+    </p>
+    <p>
+        {{ form.title }}
+    </p>
+    <p>
+        {{ form.body.label }}
+    </p>
+    <p>
+        {{ form.body }}
+    </p>
+    <p>
+        {{ form.submit }}
+    </p>
+</form>
 
 {% endblock %}

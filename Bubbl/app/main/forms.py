@@ -50,3 +50,8 @@ class SigninForm(Form):
       return False
 
 
+
+class PostForm(Form):
+    title = TextField('Title', [validators.Required("Please enter a title")])
+    body = TextAreaField('Body', [validators.Required("Your blog is empty!")])
+    submit = SubmitField('Submit')

@@ -6,14 +6,15 @@ import os
 from datetime import datetime
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from . import main
-from ..models import User, db, Permission
+from ..models import User, db, Permission, Post
 from wtforms import StringField, SubmitField, validators, Form
-from .forms import NameForm, SignupForm, SigninForm
+from .forms import NameForm, SignupForm, SigninForm, PostForm
 
 from flask_login import login_user, UserMixin, login_required, logout_user
 from ..decorators import admin_required, permission_required
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
+from flask_login import current_user
 
 
 app = Flask(__name__)
@@ -27,11 +28,22 @@ app.secret_key = 'Razgriz8426?secretkey'
 @main.route('/')
 @main.route('/index')
 @main.route('/home')
-def home():
-    """Renders the home page."""
+@main.route('/landing')
+def index():
+    "Renders the landing page"
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
     return render_template(
-        'index.html',
-        title='Bubbl Baby!!!',
+        'landing.html',
+        title='Welcome to Bubbl!',
+        posts=posts
+        )
+
+@main.route('/oldhome')
+def oldhome():
+    """Renders the old home page."""
+    return render_template(
+        'oldhome.html',
+        title='Bubbl Baby!!!'
     )
 
 @main.route('/layout')
@@ -179,18 +191,34 @@ def signin():
 def signout():
 
     if 'email' not in session:
-        return redirect(url_for('signin'))
+        return redirect(url_for('main.signin'))
 
     session.pop('email', None)
     logout_user()
-    return redirect(url_for('main.home'))
+    return redirect(url_for('main.index'))
 
 @main.route('/secret')
 @permission_required(Permission.SEE_LOVE)
 def secret():
     return render_template('secret.html')
 
-@main.route('/new_post')
+@main.route('/new_post', methods=['GET', 'POST'])
 @permission_required(Permission.WRITE_ARTICLES)
 def new_post():
-    return render_template('new_post.html')
+    form = PostForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            post = Post(title=form.title.data,
+                        body=form.body.data,
+                        author_id=current_user.id)
+            db.session.add(post)
+
+        return redirect(url_for('main.index'))
+
+    elif request.method == 'GET':
+        return render_template('new_post.html', form=form)
+    
+    
+@main.route('/post_submission')
+def post_submission():
+    return render_template('post_submission.html', message = 'Your Bubbl has been posted!')        
