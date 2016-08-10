@@ -33,9 +33,11 @@
         ] -%}
         {% endif %}
 
+        {% if 'email' in session %}
         <a class="btn btn-primary pull-right" href="{{url_for('main.new_post')}}">
             New Post
         </a>
+        {% endif %}
         {% set active_page = active_page -%}
         
         <div class="container">
