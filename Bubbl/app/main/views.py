@@ -146,6 +146,7 @@ def signup():
             db.session.commit()
 
             session['email'] = newuser.email
+            login_user(newuser)
             return redirect(url_for('main.profile'))
 
     elif request.method =='GET':
