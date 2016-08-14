@@ -20,6 +20,10 @@
 <div class="flash">{{ message }}</div>
   {% endfor %}
 
+  {% for message in form.username.errors %}
+<div class="flash">{{ username_taken }}</div>
+  {% endfor %}
+
 <form action="{{ url_for('main.signup') }}" method=post>
     {{ form.hidden_tag() }}
     <p>
@@ -45,6 +49,12 @@
     </p>
     <p>
     {{ form.password }}
+    </p>
+    <p>
+    {{ form.username.label }}
+    </p>
+    <p>
+    {{ form.username }}
     </p>
     <p>
     {{ form.submit }}

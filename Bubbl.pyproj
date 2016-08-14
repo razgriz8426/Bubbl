@@ -89,7 +89,10 @@
     <Content Include="Bubbl\app\templates\user.html" />
     <Content Include="Bubbl\app\templates\signin.html" />
     <Content Include="Bubbl\app\templates\403.html" />
+    <Content Include="Bubbl\app\templates\post.html" />
     <Content Include="Bubbl\app\templates\_formhelpers.html" />
+    <Content Include="Bubbl\app\templates\_macros.html" />
+    <Content Include="Bubbl\app\templates\_posts.html" />
     <Content Include="Bubbl\requirements.txt" />
     <Content Include="Bubbl\__pycache__\views.cpython-35.pyc" />
     <Content Include="Bubbl\__pycache__\__init__.cpython-35.pyc" />

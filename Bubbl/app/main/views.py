@@ -12,7 +12,6 @@ from .forms import NameForm, SignupForm, SigninForm, PostForm
 
 from flask_login import login_user, UserMixin, login_required, logout_user
 from ..decorators import admin_required, permission_required
-from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from flask_login import current_user
 
@@ -31,11 +30,15 @@ app.secret_key = 'Razgriz8426?secretkey'
 @main.route('/landing')
 def index():
     "Renders the landing page"
-    posts = Post.query.order_by(Post.timestamp.desc()).all()
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.order_by(Post.timestamp.desc()).paginate(
+        page, per_page=15, error_out=False)
+    posts = pagination.items
     return render_template(
         'landing.html',
         title='Welcome to Bubbl!',
-        posts=posts
+        posts=posts,
+        pagination=pagination
         )
 
 @main.route('/oldhome')
@@ -96,13 +99,6 @@ def test():
         form = form, name = session.get('name'),
         known = session.get('known', False))
 
-@main.route('/user/<name>')
-def user(name):
-    return render_template(
-        'user.html',
-        name=name
-    )
-
 
 
 @main.route('/testdb')
@@ -139,9 +135,9 @@ def signup():
 
     if request.method == 'POST':
         if form.validate() == False:
-            return render_template('signup.html', form=form)
+            return render_template('signup.html', form=form, username_taken='That username is already taken')
         else: 
-            newuser = User(form.firstname.data, form.lastname.data, form.email.data, form.password.data)
+            newuser = User(form.firstname.data, form.lastname.data, form.email.data, form.password.data, form.username.data)
             db.session.add(newuser)
             db.session.commit()
 
@@ -223,3 +219,19 @@ def new_post():
 @main.route('/post_submission')
 def post_submission():
     return render_template('post_submission.html', message = 'Your Bubbl has been posted!')        
+
+
+@main.route('/post/<int:id>')
+def post(id):
+    post = Post.query.get_or_404(id)
+    return render_template('post.html', posts=[post])
+
+
+@main.route('/user/<username>')
+def user(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        abort(404)
+    posts = user.posts.order_by(Post.timestamp.desc()).all()
+    return render_template('user.html', user=user, posts=posts)
+

@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, AnonymousUserMixin
 from werkzeug import generate_password_hash, check_password_hash
+from datetime import datetime
 
 from flask import current_app
 
@@ -19,7 +20,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
     body = db.Column(db.Text)
-    timestamp = db.Column(db.DateTime, index=True)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.now)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 
@@ -46,9 +47,11 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), unique=True)
     pwdhash = db.Column(db.String(54))
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    username = db.Column(db.String(100), unique=True)
     posts = db.relationship('Post', backref='author', lazy='dynamic')
+
    
-    def __init__(self, firstname, lastname, email, password):
+    def __init__(self, firstname, lastname, email, password, username):
         self.firstname = firstname.title()
         self.lastname = lastname.title()
         self.email = email.lower()
@@ -58,6 +61,7 @@ class User(UserMixin, db.Model):
             if self.role is None:
                 self.role = Role.query.filter_by(defa=True).first()
         self.set_password(password)
+        self.username = username
             
     def set_password(self, password):
         self.pwdhash = generate_password_hash(password)

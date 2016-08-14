@@ -5,6 +5,7 @@ from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from config import config
 from .models import db, login_manager
+from flask_pagedown import PageDown
 
 
 
@@ -12,7 +13,7 @@ from .models import db, login_manager
 bootstrap = Bootstrap()
 mail = Mail()
 moment = Moment()
-
+pagedown = PageDown()
 
 
 def create_app(config_name):
@@ -27,6 +28,7 @@ def create_app(config_name):
     db.init_app(app)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Razgriz8426?mysql@localhost/db1'
     login_manager.init_app(app)
+    pagedown.init_app(app)
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
