@@ -6,6 +6,9 @@
                 {{ post.title }}
             </a>
             <div class="post-date">{{ moment(post.timestamp).fromNow() }}</div>
+            <a class="post-author" href="{{ url_for('main.user', id=post.author) }}">
+                {{ post.author }}
+            </a>
             
             <div class="post-body">
                 {% if post.body_html %}
